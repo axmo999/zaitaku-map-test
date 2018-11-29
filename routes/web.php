@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('/facility', 'FacilityController');
+
+Route::get('/view', function () {
+    return view('html.index');
+});
