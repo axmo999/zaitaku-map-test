@@ -7,5 +7,7 @@
 			"path": "Q:\\public_html\\vue-test"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"restructuredtext.confPath": "${workspaceFolder}\\vendor\\mockery\\mockery\\docs"
+	}
 }
