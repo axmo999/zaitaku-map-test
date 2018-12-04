@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="jp">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,7 +21,7 @@
     </div>
 
     {{-- JavaScript --}}
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
+
 </body>
 </html>
