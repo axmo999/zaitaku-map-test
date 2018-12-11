@@ -1,0 +1,47 @@
+@startuml erdiagram
+entity "facilities" {
+    + id [PK]
+    ==
+    facility_name
+    postal_code
+    prefecture_name
+    city_name
+    address
+    latitude
+    longitude
+    telphone
+    fax
+    representative
+    homepage
+    created_at [作成日]
+    updated_at [更新日]
+    対応可能時間（月曜日）
+    対応可能時間（火曜日）
+    対応可能時間（水曜日）
+    対応可能時間（木曜日）
+    対応可能時間（金曜日）
+    対応可能時間（土曜日）
+    対応可能時間（日・祝日）
+    窓口担当者
+    窓口対応部署
+    窓口対応時間
+    24時間対応
+    受け入れ可：複数項目
+    受け入れ可（その他）
+    訪問、対応地域：複数項目
+    訪問、対応地域（その他）
+    外国語対応
+    併設・関連施設
+    オプション・事業所のアピール等
+    特記
+}
+
+entity "city_m" {
+    + app_detail_id [PK]
+    ==
+    # app_id [FK(app.app_id)]
+    app_cnt
+}
+
+app --o{ app_detail
+@enduml
