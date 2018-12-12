@@ -5,6 +5,7 @@ require 'openssl'
 require 'uri'
 require 'json'
 require 'logger'
+require 'nkf'
 
 class GetAddress
 
@@ -250,11 +251,13 @@ address2 = CSV.generate do |csv|
 =end
 
         if !data["電話番号"].nil?
-            data["電話番号"] = data["電話番号"].sub('/\(|\)|－/', "-").tr('０-９ａ-ｚＡ-Ｚ','0-9a-zA-Z')
+            data["電話番号"] = NKF.nkf('-w -Z4', data["電話番号"])
+            data["電話番号"] = data["電話番号"].sub("/\(/", "-").sub("/\)/", "-")
         end
 
         if !data["FAX番号"].nil?
-            data["FAX番号"] = data["FAX番号"].sub('/\(|\)|－/', "-").tr('０-９ａ-ｚＡ-Ｚ','0-9a-zA-Z')
+            data["FAX番号"] = NKF.nkf('-w -Z4', data["FAX番号"])
+            data["FAX番号"] = data["FAX番号"].sub("/\(/", "-").sub("/\)/", "-")
         end
 
         insert = [
