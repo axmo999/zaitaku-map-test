@@ -14,8 +14,9 @@ class CreateFacilitiesTable extends Migration
     public function up()
     {
         Schema::create('facilities', function (Blueprint $table) {
-            $table->increments('id')->comment("施設ＩＤ");
+            $table->increments('id')->comment("施設ID");
             $table->string('facility_name')->comment("施設名");
+            $table->integer('category_id')->unsigned()->comment("カテゴリーID");
             $table->string('postal_code')->comment("郵便番号")->nullable();
             $table->string('prefecture_name')->comment("都道府県名")->nullable();
             $table->string('city_name')->comment("市町村名")->nullable();
@@ -30,7 +31,7 @@ class CreateFacilitiesTable extends Migration
         });
 
         // ALTER 文を実行しテーブルにコメントを設定
-        DB::statement("ALTER TABLE facilities COMMENT '施設基本情報'");
+        DB::statement("ALTER TABLE facilities COMMENT '施設基本情報テーブル'");
     }
 
     /**

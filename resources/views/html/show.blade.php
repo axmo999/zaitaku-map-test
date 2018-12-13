@@ -55,6 +55,10 @@
         </tbody>
     </table>
 
+    <p>
+        {{$facility->answers->firstWhere('question_cd', 'A001')->answer_content}}
+    </p>
+
     <div id="map" style="height: 480px;"></div>
 
     <div style="margin:10px;">
@@ -67,6 +71,8 @@
             ［記事公開日］{{ $facility->created_at }} ［最終更新日］{{ $facility->updated_at }}
         </p>
     </div>
+
+    {{ dd($facility->answers) }}
 
 </div>
 

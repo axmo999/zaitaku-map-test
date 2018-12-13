@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Facility;
 use Illuminate\Http\Request;
+//use Illuminate\Support\Facades\DB;
+//use Illuminate\Support\Facades\Input;
 
 class FacilityController extends Controller
 {
@@ -14,8 +16,24 @@ class FacilityController extends Controller
      */
     public function index()
     {
-        $datas = Facility::all();
-        return view("test", ['datas'=>$datas]);
+        $datas = Facility::whereIn('category_id', [9,17])->get();
+
+        //$datas = DB::table('facilities')->all();
+
+        // $perPage = 20;
+
+        // $page = Input::get('page', 1);
+
+        // if ($page > ($datas->count() / $perPage)) {
+        //     $page = 1;
+        // }
+
+        // $pageOffset = ($page * $perPage) - $perPage;
+
+        // $results = $datas->slice($pageOffset, $perPage);
+
+        //$datas = DB::table('facilities')->paginate(15);
+        return view("html.index", ['datas'=> $datas]);
     }
 
     /**
