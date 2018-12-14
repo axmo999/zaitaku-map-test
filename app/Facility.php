@@ -23,7 +23,7 @@ class Facility extends Model
 
     public function category()
     {
-        return $this->belongsTo('App\Category');
+        return $this->belongsTo('App\M_category');
     }
 
     public function answers()

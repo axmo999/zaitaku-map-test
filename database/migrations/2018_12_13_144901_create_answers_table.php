@@ -17,7 +17,8 @@ class CreateAnswersTable extends Migration
             $table->increments('id')->comment("回答ID");
             $table->integer('facility_id')->comment("施設ID");
             $table->string('question_cd')->comment("設問コード");
-            $table->string('answer_content')->comment("回答内容");
+            $table->string('answer_cd')->comment("回答コード");
+            $table->string('answer_conent')->comment("回答内容");
             $table->timestamps();
         });
 

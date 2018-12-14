@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\M_question_cd;
+use App\M_answer_cd;
 use Illuminate\Http\Request;
 
-class MQuestioncdController extends Controller
+class MAnswerCdController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class MQuestioncdController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\M_questioncd  $m_questioncd
+     * @param  \App\M_answer_cd  $m_answer_cd
      * @return \Illuminate\Http\Response
      */
-    public function show(M_question_cd $m_questioncd)
+    public function show(M_answer_cd $m_answer_cd)
     {
         //
     }
@@ -52,10 +52,10 @@ class MQuestioncdController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\M_questioncd  $m_questioncd
+     * @param  \App\M_answer_cd  $m_answer_cd
      * @return \Illuminate\Http\Response
      */
-    public function edit(M_question_cd $m_questioncd)
+    public function edit(M_answer_cd $m_answer_cd)
     {
         //
     }
@@ -64,10 +64,10 @@ class MQuestioncdController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\M_questioncd  $m_questioncd
+     * @param  \App\M_answer_cd  $m_answer_cd
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, M_question_cd $m_questioncd)
+    public function update(Request $request, M_answer_cd $m_answer_cd)
     {
         //
     }
@@ -75,10 +75,10 @@ class MQuestioncdController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\M_questioncd  $m_questioncd
+     * @param  \App\M_answer_cd  $m_answer_cd
      * @return \Illuminate\Http\Response
      */
-    public function destroy(M_question_cd $m_questioncd)
+    public function destroy(M_answer_cd $m_answer_cd)
     {
         //
     }

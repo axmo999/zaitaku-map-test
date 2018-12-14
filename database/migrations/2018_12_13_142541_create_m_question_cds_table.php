@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQuestionClassesTable extends Migration
+class CreateMQuestionCdsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,16 @@ class CreateQuestionClassesTable extends Migration
      */
     public function up()
     {
-        Schema::create('question_classes', function (Blueprint $table) {
-            $table->increments('id')->comment("設問分類ID");
-            $table->integer('category_id')->comment("カテゴリーID");
+        Schema::create('m_question_cds', function (Blueprint $table) {
+            $table->increments('id')->comment("設問マスタID");
             $table->string('question_cd')->comment("設問コード");
+            $table->string('question_content')->comment("設問内容");
+            $table->string('question_type')->comment("設問タイプ");
             $table->timestamps();
         });
 
         // ALTER 文を実行しテーブルにコメントを設定
-        DB::statement("ALTER TABLE question_classes COMMENT '設問分類テーブル'");
+        DB::statement("ALTER TABLE m_question_cds COMMENT '設問マスターテーブル'");
     }
 
     /**
@@ -31,6 +32,6 @@ class CreateQuestionClassesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('question_classes');
+        Schema::dropIfExists('m_question_cds');
     }
 }

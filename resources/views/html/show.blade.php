@@ -72,8 +72,6 @@
         </p>
     </div>
 
-    {{ dd($facility->answers) }}
-
 </div>
 
 
