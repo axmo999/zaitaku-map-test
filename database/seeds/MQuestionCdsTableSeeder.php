@@ -13,27 +13,27 @@ class MQuestionCdsTableSeeder extends Seeder
     public function run()
     {
         $file = new SplFileObject('database/csv/m_question_cds.csv');
-/*         $file->setFlags(
+        $file->setFlags(
             \SplFileObject::READ_CSV |
             \SplFileObject::READ_AHEAD |
             \SplFileObject::SKIP_EMPTY |
             \SplFileObject::DROP_NEW_LINE
-        ); */
+        );
         $list = [];
         $now = Carbon::now();
         foreach($file as $line){
-            $new_line = str_getcsv($line);
-            echo $new_line[0];
-            echo $new_line[1];
+            // $new_line = str_getcsv($line);
+            // echo $line[0];
+            // echo $line[1];
             $list[] = [
-                "question_cd" => $new_line[0],
-                "question_content" => $new_line[1],
-                "question_type" => $new_line[2],
+                "question_cd" => $line[0],
+                "question_content" => $line[1],
+                "question_type" => $line[2],
                 "created_at" => $now,
                 "updated_at" => $now,
             ];
         }
 
-        DB::table("m_question_cds")->DB::insert($list);
+        DB::table("m_question_cds")->insert($list);
     }
 }
