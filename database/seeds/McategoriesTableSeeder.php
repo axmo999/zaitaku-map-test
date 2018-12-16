@@ -11,7 +11,7 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('categories')->insert([
+        DB::table('m_categories')->insert([
             [
                 'category_name' => '保健所等',
                 'created_at' => new DateTime(),
