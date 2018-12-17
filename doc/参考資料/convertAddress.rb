@@ -8,6 +8,7 @@ require 'logger'
 require 'nkf'
 require 'date'
 require 'mysql2'
+require 'dotenv'
 
 class Entity
     attr_accessor :facility_name, :home_care, :facility_type_id, :postal_code, :prefecture_name, :city_name, :address, :latitude, :longitude, :telphone, :fax, :representative, :homepage, :available_time_mon, :available_time_tue, :available_time_wed, :available_time_thu, :available_time_fri, :available_time_sat, :available_time_sun, :person, :correspondence_dept, :correspondence_time, :open_24hours, :foreign_language, :related_facilities, :options, :note, :publish, :user_id, :created_at, :updated_at
@@ -18,7 +19,12 @@ def getFacilityType(type_name)
         return nil
     end
     getType = type_name.split("|")
-    client = Mysql2::Client.new(:host => "localhost", :username => "www-user", :password => "www-user", :database => "zaitakumap")
+    Dotenv.load "../../.env"
+    hostname = ENV["DB_HOST"]
+    username = ENV["DB_USERNAME"]
+    password = ENV["DB_PASSWORD"]
+    database = ENV["DB_DATABASE"]
+    client = Mysql2::Client.new(:host => hostname, :username => username, :password => password, :database => database)
     # 文字コードをUTF8に設定
     client.query("set character set utf8")
     # DBに問い合わせ
