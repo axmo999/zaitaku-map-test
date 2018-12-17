@@ -21,17 +21,18 @@ class MQuestionCdsTableSeeder extends Seeder
         );
         $list = [];
         $now = Carbon::now();
+        $row_count = 1;
         foreach($file as $line){
-            // $new_line = str_getcsv($line);
-            // echo $line[0];
-            // echo $line[1];
-            $list[] = [
-                "question_cd" => $line[0],
-                "question_content" => $line[1],
-                "question_type" => $line[2],
-                "created_at" => $now,
-                "updated_at" => $now,
-            ];
+            if ($row_count > 1) {
+                $list[] = [
+                    "question_cd" => $line[0],
+                    "question_content" => $line[1],
+                    "question_type" => $line[2],
+                    "created_at" => $now,
+                    "updated_at" => $now,
+                ];
+            }
+            $row_count++;
         }
 
         DB::table("m_question_cds")->insert($list);

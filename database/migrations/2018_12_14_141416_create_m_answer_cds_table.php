@@ -15,6 +15,7 @@ class CreateMAnswerCdsTable extends Migration
     {
         Schema::create('m_answer_cds', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('answer_group_cd')->comment("回答グループコード");
             $table->string('answer_cd')->comment("回答コード");
             $table->string('answer_content')->comment("回答内容");
             $table->timestamps();

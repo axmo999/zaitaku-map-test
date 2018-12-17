@@ -15,7 +15,7 @@ class CreateSQuestionsTable extends Migration
     {
         Schema::create('s_questions', function (Blueprint $table) {
             $table->increments('id')->comment("設問分類ID");
-            $table->integer('category_id')->comment("カテゴリーID");
+            $table->integer('facility_type_id')->comment("施設分類ID");
             $table->string('question_cd')->comment("設問コード");
             $table->timestamps();
         });

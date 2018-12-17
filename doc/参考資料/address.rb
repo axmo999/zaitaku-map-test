@@ -141,9 +141,43 @@ jigyosyo = JigyosyoPostCode.new('JIGYOSYO.CSV')
 getPostal = GetPostalCode.new
 
 address2 = CSV.generate do |csv|
-    header = ["Title", "郵便番号", "都道府県名", "市町村名", "住所", "マップ_lat", "マップ_lng", "電話番号", "FAX番号", "代表者", "ホームページ"]
+    header = [
+                "facility_name",
+                "home_care",
+                "facility_type_id",
+                "postal_code",
+                "prefecture_name",
+                "city_name",
+                "address",
+                "latitude",
+                "longitude",
+                "telphone",
+                "fax",
+                "representative",
+                "homepage",
+                "available_time_mon",
+                "available_time_tue",
+                "available_time_wed",
+                "available_time_thu",
+                "available_time_fri",
+                "available_time_sat",
+                "available_time_sun",
+                "person",
+                "correspondence_dept",
+                "correspondence_time",
+                "open_24hours",
+                "foreign_language",
+                "related_facilities",
+                "options",
+                "note",
+                "publish",
+                "user_id",
+                "created_at",
+                "updated_at"
+            ]
+
     csv << header
-    CSV.foreach('address.csv', headers: true) do |data|
+    CSV.foreach('WordPress.csv', headers: true) do |data|
 
         convertAddress = ""
         juusyo = ""
