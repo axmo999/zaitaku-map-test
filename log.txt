@@ -1,0 +1,24 @@
+Dropped all tables successfully.
+Migration table created successfully.
+Migrating: 2014_10_12_000000_create_users_table
+Migrated:  2014_10_12_000000_create_users_table
+Migrating: 2014_10_12_100000_create_password_resets_table
+Migrated:  2014_10_12_100000_create_password_resets_table
+Migrating: 2018_11_29_003315_create_facilities_table
+Migrated:  2018_11_29_003315_create_facilities_table
+Migrating: 2018_12_13_112801_create_m_facility_types_table
+Migrated:  2018_12_13_112801_create_m_facility_types_table
+Migrating: 2018_12_13_142541_create_m_question_cds_table
+Migrated:  2018_12_13_142541_create_m_question_cds_table
+Migrating: 2018_12_13_144136_create_s_questions_table
+Migrated:  2018_12_13_144136_create_s_questions_table
+Migrating: 2018_12_13_144901_create_answers_table
+Migrated:  2018_12_13_144901_create_answers_table
+Migrating: 2018_12_14_141416_create_m_answer_cds_table
+Migrated:  2018_12_14_141416_create_m_answer_cds_table
+Seeding: FacilitiesTableSeeder
+Seeding: MFaciliryTypesTableSeeder
+Seeding: MAnswerCdsTableSeeder
+Seeding: MQuestionCdsTableSeeder
+Seeding: SQuestionsTableSeeder
+Database seeding completed successfully.

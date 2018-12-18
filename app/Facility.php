@@ -8,7 +8,7 @@ class Facility extends Model
 {
     protected $fillable = [
         'facility_name',
-        'category_id',
+        'facility_type_id',
         'postal_code',
         'prefecture_name',
         'city_name',
@@ -21,7 +21,7 @@ class Facility extends Model
         'homepage',
     ];
 
-    public function category()
+/*     public function category()
     {
         return $this->belongsTo('App\M_category');
     }
@@ -29,5 +29,5 @@ class Facility extends Model
     public function answers()
     {
         return $this->hasMany('App\Answer');
-    }
+    } */
 }

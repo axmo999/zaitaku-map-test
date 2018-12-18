@@ -20,7 +20,7 @@
             @foreach ($datas as $data)
                 <tr>
                     <td>{{ $data->facility_name }}</td>
-                    <td>{{ $data->category->category_name }}</td>
+                    {{-- <td>{{ $data->category->category_name }}</td> --}}
                     <td>{{ $data->city_name }}{{ $data->address }}</td>
                     <td>{{ $data->telphone }}</td>
                     <td><a href="{{ action('FacilityController@show', $data->id) }}">詳細</a></td>

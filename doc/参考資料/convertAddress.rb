@@ -57,7 +57,7 @@ class PostCodeIndex
     @data = {}
 
     CSV.foreach(file, encoding: 'Shift_JIS:UTF-8') do |row|
-      post_code, city, prefecture, street = row[2], row[6], row[7], row[8]
+      post_code, city, prefecture, street = row[2], row[7], row[6], row[8]
       @data[post_code] = {
         post_code: post_code,
         prefecture: prefecture,
@@ -150,27 +150,98 @@ class GetPostalCode
 end
 
 def getPostalCode(postalcode, address)
-    postCodeIndex = PostCodeIndex.new('47OKINAW.CSV')
-    officeIndex = OfficePostCode.new('JIGYOSYO.CSV')
+    index = PostCodeIndex.new('47OKINAW.CSV')
+    jigyosyo = OfficePostCode.new('JIGYOSYO.CSV')
+    getPostal = GetPostalCode.new
+    convertAddress = ""
+    juusyo = ""
 
     if !postalcode.nil?
         postalcode_num = postalcode.gsub(/[^\d]/, "")
-
-        if !postCodeIndex.lookup(postalcode_num).nil?
-            convertPostalCode = postCodeIndex.lookup(postalcode_num)
-        elsif !officeIndex.lookup(postalcode_num).nil?
-            convertPostalCode = officeIndex.lookup(postalcode_num)
+        if !index.lookup(postalcode_num).nil?
+            convertPostalCode = index.lookup(postalcode_num)
+        elsif !jigyosyo.lookup(postalcode_num).nil?
+            convertPostalCode = jigyosyo.lookup(postalcode_num)
+        else
+            if !address.nil?
+                postalcode = getPostal.lookup(postalcode)
+                if !index.lookup(postalcode).nil?
+                    convertPostalCode = index.lookup(postalcode)
+                elsif !jigyosyo.lookup(postalcode).nil?
+                    convertPostalCode = jigyosyo.lookup(postalcode)
+                end
+            end
         end
 
         if !convertPostalCode.nil?
-            return convertPostalCode
+            convertAddress = convertPostalCode.dig(:prefecture)
         end
-        return nil
+
+        if !address.nil?
+                deleteAddress = convertAddress.delete('/国頭郡|中頭郡|島尻郡/')
+                juusyo = address.delete('/国頭郡|中頭郡|島尻郡/').sub(deleteAddress, "")
+        end
+
+    elsif !address.nil?
+        postalcode = getPostal.lookup(address)
+        if !index.lookup(postalcode).nil?
+            convertPostalCode = index.lookup(postalcode)
+        elsif !jigyosyo.lookup(postalcode).nil?
+            convertPostalCode = jigyosyo.lookup(postalcode)
+        end
+
+        if !convertPostalCode.nil?
+            convertAddress = convertPostalCode.dig(:prefecture)
+        end
+
+        if !address.nil?
+            deleteAddress = convertAddress.delete('/国頭郡|中頭郡|島尻郡/')
+            juusyo = address.delete('/国頭郡|中頭郡|島尻郡/').sub(deleteAddress, "")
+        end
     end
-    return nil
+
+    if convertAddress.length==0
+        if !address.nil?
+            address = address.delete('/字/').strip
+            postalcode = getPostal.lookup(address)
+            if postalcode.nil?
+                postalcode = getPostal.lookup("国頭郡" + address)
+            end
+            if postalcode.nil?
+                postalcode = getPostal.lookup("中頭郡" + address)
+            end
+            if postalcode.nil?
+                postalcode = getPostal.lookup("島尻郡" + address)
+            end
+
+            if !index.lookup(postalcode).nil?
+                convertPostalCode = index.lookup(postalcode)
+            elsif !jigyosyo.lookup(postalcode).nil?
+                convertPostalCode = jigyosyo.lookup(postalcode)
+            end
+
+            if !convertPostalCode.nil?
+                convertAddress = convertPostalCode.dig(:prefecture)
+            end
+
+            if !address.nil?
+                deleteAddress = convertAddress.delete('/国頭郡|中頭郡|島尻郡/')
+                juusyo = address.delete('/国頭郡|中頭郡|島尻郡/').sub(deleteAddress, "")
+            end
+        end
+    end
+
+    return convertPostalCode.dig(:post_code), convertPostalCode.dig(:prefecture), convertPostalCode.dig(:city), juusyo
+
 end
 
-
+def getPhoneNum(phone)
+    if !phone.nil?
+        phone = NKF.nkf('-w -Z4', phone)
+        phone = phone.sub("/\(/", "-").sub("/\)/", "-")
+    end
+    return phone
+end
 
 CSV.open('test.csv', 'w', :force_quotes => true) do |row|
 
@@ -217,8 +288,10 @@ CSV.open('test.csv', 'w', :force_quotes => true) do |row|
         entity.facility_type_id = getFacilityType(data["category"])
         entity.home_care = getHomeCare(data["category"])
 
-        entity.telphone = data["電話番号"]
-        entity.fax = data["FAX番号"]
+        #entity.postal_code, entity.prefecture_name, entity.city_name, entity.address = getPostalCode(data["郵便番号"], data["住所"])
+
+        entity.telphone = getPhoneNum(data["電話番号"])
+        entity.fax = getPhoneNum(data["FAX番号"])
         entity.representative = data["代表者"]
         entity.homepage = data["ホームページ"]
         entity.available_time_mon = data["対応可能時間（月曜日）"]
