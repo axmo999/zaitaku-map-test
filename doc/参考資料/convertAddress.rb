@@ -38,14 +38,21 @@ def getHomeCare(facility_type)
     if !facility_type.nil? && facility_type.include?("（在宅）")
         return 1
     end
-    return nil
+    return 0
 end
 
 def getPublish(status)
     if status=="publish"
         return 1
     end
-    return nil
+    return 0
+end
+
+def getBool(boolnum)
+    if boolnum.nil?
+        return 0
+    end
+    return boolnum
 end
 
 def getAuther()
@@ -304,13 +311,14 @@ CSV.open('test.csv', 'w', :force_quotes => true) do |row|
         entity.person = data["窓口担当者"]
         entity.correspondence_dept = data["窓口対応部署"]
         entity.correspondence_time = data["窓口対応時間"]
-        entity.open_24hours = data["24時間対応"]
-        entity.foreign_language = data["外国語対応"]
+        entity.open_24hours = getBool(data["24時間対応"])
+        entity.foreign_language = getBool(data["外国語対応"])
         entity.related_facilities = data["併設・関連施設"]
         entity.options = data["オプション・事業所のアピール等"]
         entity.note = data["特記"]
 
         entity.publish = getPublish(data["Status"])
+        entity.user_id = 1
         entity.created_at = Date.parse(data["Date"].to_s).to_s
         entity.updated_at = Date.parse(data["Post Modified Date"].to_s).to_s
 
