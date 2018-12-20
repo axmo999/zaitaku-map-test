@@ -26,7 +26,7 @@ class AnswersTableSeeder extends Seeder
                     "facility_id" => $line[0],
                     "question_cd" => $line[1],
                     "answer_cd" => $line[2],
-                    "answer_conent" => $line[3],
+                    "answer_content" => $line[3],
                     "created_at" => new DateTime($line[4]),
                     "updated_at" => new DateTime($line[5])
                 ];

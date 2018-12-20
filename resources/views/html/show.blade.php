@@ -14,12 +14,12 @@
     <hr>
 
     {{-- 基本項目上部読み込み --}}
-    {{-- @include('html.types.basic_top') --}}
+    @include('html.types.basic_top')
 
     @include('html.types.hospitals')
 
     {{-- 基本項目下部読み込み --}}
-    {{-- @include('html.types.basic_button') --}}
+    @include('html.types.basic_button')
 
 
     <div id="map" style="height: 480px;"></div>
