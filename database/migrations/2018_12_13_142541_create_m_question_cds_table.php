@@ -18,6 +18,7 @@ class CreateMQuestionCdsTable extends Migration
             $table->string('question_cd')->comment("設問コード");
             $table->string('question_content')->comment("設問内容");
             $table->string('question_type')->comment("設問タイプ");
+            $table->string('answer_group_cd')->comment("回答グループコード");
             $table->timestamps();
         });
 

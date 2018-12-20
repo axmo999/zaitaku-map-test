@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Facility;
+use App\M_question_cd;
 use Illuminate\Http\Request;
 //use Illuminate\Support\Facades\DB;
 //use Illuminate\Support\Facades\Input;
@@ -33,6 +34,7 @@ class FacilityController extends Controller
         // $results = $datas->slice($pageOffset, $perPage);
 
         //$datas = DB::table('facilities')->paginate(15);
+
         return view("html.index", ['datas'=> $datas]);
     }
 
@@ -65,9 +67,13 @@ class FacilityController extends Controller
      * @param  \App\Facility  $facility
      * @return \Illuminate\Http\Response
      */
-    public function show(Facility $facility)
+    public function show(int $facility)
     {
-        return view("html.show", ['facility'=>$facility]);
+        $m_questions = M_question_cd::all();
+        $facility_attr = Facility::with('answers.M_answer_cd')->find($facility);
+        //dd($facility_attr);
+        //dd($facility::with('answers.M_answer_cd'));
+        return view("html.show", ['facility'=> $facility_attr, 'm_questions'=> $m_questions]);
     }
 
     /**

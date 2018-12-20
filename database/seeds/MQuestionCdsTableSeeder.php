@@ -28,6 +28,7 @@ class MQuestionCdsTableSeeder extends Seeder
                     "question_cd" => $line[0],
                     "question_content" => $line[1],
                     "question_type" => $line[2],
+                    "answer_group_cd" => $line[3],
                     "created_at" => $now,
                     "updated_at" => $now,
                 ];

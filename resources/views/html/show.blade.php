@@ -2,6 +2,7 @@
 @section('content')
 
 <div class="container">
+
     <h1 id="post-title">{{ $facility->facility_name }}</h1>
 
     <div class="edit">
@@ -12,52 +13,14 @@
 
     <hr>
 
-    <table border="1" class="content-map-table">
-        <tbody>
-            <tr>
-                <th scope="row">施設名</th>
-                <td data-th="施設名">
-                    {{ $facility->facility_name }}
-                </td>
-                <th scope="row">代表者名</th>
-                <td data-th="代表者名">
-                    {{ $facility->representative }}
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">住所</th>
-                <td colspan="3" data-th="住所">
-                    〒{{ $facility->postal_code }} {{ $facility->prefecture_name }}{{ $facility->city_name }}{{ $facility->address }}
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">電話番号</th>
-                <td data-th="電話番号">
-                    {{ $facility->telphone }}
-                </td>
-                <th scope="row">FAX番号</th>
-                <td data-th="FAX番号">
-                    {{ $facility->fax }}
-                </td>
-            </tr>
+    {{-- 基本項目上部読み込み --}}
+    {{-- @include('html.types.basic_top') --}}
 
-            @if($facility->homepage)
-            <tr>
-                <th scope="row">ホームページ</th>
-                <td colspan="3" data-th="ホームページ">
-                    <a href="{{ $facility->homepage }}" target="_blank">
-                        {{ $facility->homepage }}
-                    </a>
-                </td>
-            </tr>
-            @endif
+    @include('html.types.hospitals')
 
-        </tbody>
-    </table>
+    {{-- 基本項目下部読み込み --}}
+    {{-- @include('html.types.basic_button') --}}
 
-    <p>
-        {{$facility->answers->firstWhere('question_cd', 'A001')->answer_content}}
-    </p>
 
     <div id="map" style="height: 480px;"></div>
 
