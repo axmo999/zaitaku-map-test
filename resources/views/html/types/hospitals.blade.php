@@ -1,4 +1,4 @@
-<table class="table table-bordered">
+<table class="table">
     <tbody>
 
         @foreach ($m_questions as $m_question)
@@ -13,7 +13,7 @@
                     @if ($m_question->question_type == "check")
                         <ul class="list-inline">
                             @foreach ($attributes as $attribute)
-                            <li>
+                            <li class="list-inline-item">
                                 {{$attribute->M_answer_cd->answer_content}}
                             </li>
                             @endforeach
@@ -27,7 +27,6 @@
                     @elseif ($m_question->question_type == "select")
                         {{$attributes->first()->M_answer_cd->answer_content}}
                     @endif
-
                 </td>
             </tr>
             @endif

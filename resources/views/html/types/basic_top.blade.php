@@ -1,13 +1,26 @@
+<div class="container">
+    <div class="row">
+        <div class="col-4 col-md-2">施設名</div>
+        <div class="col-8 col-md-4">{{ $facility->facility_name }}</div>
+        <div class="col-4 col-md-2">代表者名</div>
+        <div class="col-8 col-md-4">{{ $facility->representative }}</div>
+    </div>
+    <div class="row">
+            <div class="col-2">住所</div>
+            <div class="col-10">〒{{ $facility->postal_code }} {{ $facility->prefecture_name }}{{ $facility->city_name }}{{ $facility->address }}</div>
+    </div>
+</div>
 
-    <table class="content-map-table table is-fullwidth is-bordered">
+
+    <table class="table">
         <tbody>
             <tr>
-                <th scope="row">施設名</th>
-                <td data-th="施設名">
+                <th scope="row" class="col-md-2">施設名</th>
+                <td data-th="施設名" class="col-md-4">
                     {{ $facility->facility_name }}
                 </td>
-                <th scope="row">代表者名</th>
-                <td data-th="代表者名">
+                <th scope="row" class="col-md-2">代表者名</th>
+                <td data-th="代表者名" class="col-md-4">
                     {{ $facility->representative }}
                 </td>
             </tr>
@@ -66,7 +79,7 @@
             <tr>
                 <th scope="row">営業時間</th>
                 <td colspan="3" data-th="営業時間" class="pd-none">
-                    <table border="1" class="inner-table">
+                    <table class="table table-bordered inner-table">
                         <thead>
                             <tr>
                                 <th scope="col" class="no-bd-top no-bd-left">月曜日</th>
@@ -115,7 +128,7 @@
             @endif
 
 
-            @php
+            {{-- @php
                 $acceptances = $facility->answers->where('question_cd', 'QA001');
                 $acceptances_other = $facility->answers->where('question_cd', 'QA002');
                 $areas = $facility->answers->where('question_cd', 'QA003');
@@ -169,7 +182,7 @@
                     </ul>
                 </td>
             </tr>
-            @endif
+            @endif --}}
 
 
         </tbody>

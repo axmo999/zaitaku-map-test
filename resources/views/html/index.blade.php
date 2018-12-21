@@ -2,36 +2,31 @@
 
 @section('content')
 
-<div class="container">
+<div id="map" style="height: 480px;"></div>
 
-    <div id="map" style="height: 480px;"></div>
-
-    <table>
-        <thead>
+<table>
+    <thead>
+        <tr>
+            <th>事業所名</th>
+            <th>種別</th>
+            <th>住所</th>
+            <th>電話番号</th>
+            <th>詳細</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($datas as $data)
             <tr>
-                <th>事業所名</th>
-                <th>種別</th>
-                <th>住所</th>
-                <th>電話番号</th>
-                <th>詳細</th>
+                <td>{{ $data->facility_name }}</td>
+                {{-- <td>{{ $data->category->category_name }}</td> --}}
+                <td>{{ $data->city_name }}{{ $data->address }}</td>
+                <td>{{ $data->telphone }}</td>
+                <td><a href="{{ action('FacilityController@show', $data->id) }}">詳細</a></td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach ($datas as $data)
-                <tr>
-                    <td>{{ $data->facility_name }}</td>
-                    {{-- <td>{{ $data->category->category_name }}</td> --}}
-                    <td>{{ $data->city_name }}{{ $data->address }}</td>
-                    <td>{{ $data->telphone }}</td>
-                    <td><a href="{{ action('FacilityController@show', $data->id) }}">詳細</a></td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+        @endforeach
+    </tbody>
+</table>
 
-
-
-</div>
 
 <script>
     var map;

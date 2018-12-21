@@ -1,5 +1,5 @@
 
-    <table class="content-map-table table is-fullwidth is-bordered">
+    <table class="table">
         <tbody>
             @if($facility->foreign_language)
             <tr>

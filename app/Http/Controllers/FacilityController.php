@@ -69,7 +69,7 @@ class FacilityController extends Controller
      */
     public function show(int $facility)
     {
-        $m_questions = M_question_cd::all();
+        $m_questions = M_question_cd::all()->sortBy('question_priority');
         $facility_attr = Facility::with('answers.M_answer_cd')->find($facility);
         //dd($facility_attr);
         //dd($facility::with('answers.M_answer_cd'));
