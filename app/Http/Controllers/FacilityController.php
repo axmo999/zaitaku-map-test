@@ -17,7 +17,9 @@ class FacilityController extends Controller
      */
     public function index()
     {
-        $datas = Facility::whereIn('facility_type_id', [9,17])->get();
+        $datas = Facility::paginate(20);
+
+        //$datas = Facility::whereIn('facility_type_id', [9,17])->get();
 
         //$datas = DB::table('facilities')->all();
 
