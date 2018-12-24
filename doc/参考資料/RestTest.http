@@ -1,0 +1,7 @@
+POST http://localhost:8000/api HTTP/1.1
+content-type: application/json
+
+{
+    "city_name": "国頭郡恩納村",
+    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+}

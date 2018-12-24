@@ -41,7 +41,7 @@ class Facility extends Model
         'updated_at'
     ];
 
-    public function facility_type()
+    public function facilityType()
     {
         return $this->belongsTo('App\M_facility_type');
     }

@@ -5,6 +5,7 @@
 		}
 	],
 	"settings": {
-		"restructuredtext.confPath": "${workspaceFolder}\\vendor\\mockery\\mockery\\docs"
+        "restructuredtext.confPath": "${workspaceFolder}\\vendor\\mockery\\mockery\\docs",
+        "phpcs.standard": "PSR2"
 	}
 }
