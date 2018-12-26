@@ -17,10 +17,7 @@ Route::get('/', function () {
 
 Route::resource('/facility', 'FacilityController');
 
-Route::get('/index3', function () {
-    return view('html.index3');
-});
-
+Route::get('/index3', 'IndexController@index');
 
 Route::get('/view', function () {
     return view('html.index');

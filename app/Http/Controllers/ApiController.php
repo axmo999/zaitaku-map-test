@@ -11,6 +11,9 @@ class ApiController extends Controller
     public function search(Request $request)
     {
         $datas = $request->all();
+
+        //\Log::info(array_values($datas["facility_type_id"]));
+
         $queryFacility = Facility::query();
         $queryFacility->with("facilityType:id,facility_type_name");
         $queryFacility->select('id', 'facility_name', 'facility_type_id', 'city_name', 'address', 'telphone', 'latitude', 'longitude');
@@ -25,28 +28,13 @@ class ApiController extends Controller
             }
 
             if (array_key_exists('facility_type_id', $datas)) {
-                $queryFacility->WhereIn('facility_type_id', explode(",", $datas["facility_type_id"]));
+                $queryFacility->WhereIn('facility_type_id', array_values($datas["facility_type_id"]));
             }
         }
 
-        // $facilities = $queryFacility->get();
+        //\Log::info($queryFacility->get());
 
-        // $returnDatas = [];
-
-        // foreach ($facilities as $facility) {
-        //     $returnDatas = [
-        //         $facility->id,
-        //         $facility->facility_name,
-        //         $facility->facility_name,
-        //         $facility->city_name + $facility->address,
-        //         $facility->
-        //         $facility->
-        //         $facility->
-        //     ];
-        // }
-
-
-
+        //dd($queryFacility->get());
         return response()->json($queryFacility->get());
     }
 }
