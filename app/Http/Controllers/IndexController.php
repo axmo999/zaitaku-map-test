@@ -19,15 +19,8 @@ class IndexController extends Controller
 
         $acceptable_cities = M_answer_cd::where('answer_group_cd', 'AA02')->get();
 
-        //dd($city_names);
+        dd($acceptable_patients);
 
-        return view("html.index3",
-            [
-                'facility_types' => $facility_types,
-                'city_names' => $city_names,
-                'acceptable_cities' => $acceptable_cities,
-                'acceptable_patients' => $acceptable_patients
-            ]
-        );
+        return view("html.index3", ['facility_types' => $facility_types, 'city_names' => $city_names, 'acceptable_cities' => $acceptable_cities, 'acceptable_patients' => $acceptable_patients]);
     }
 }

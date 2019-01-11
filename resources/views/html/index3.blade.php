@@ -17,7 +17,8 @@
             <div>
                 <fieldset>
                     <legend>オプション</legend>
-                    {{ Form::checkbox('home_care', 1, false ,["id" => 'home_care']) }} {{ Form::label('home_care', '在宅可能') }}
+                    {{ Form::checkbox('home_care', 1, false ,["id" => 'home_care']) }}
+                    {{ Form::label('home_care', '在宅可能') }}
                 </fieldset>
 
                 <fieldset>
